@@ -1,21 +1,22 @@
 # app/api/endpoints/translator.py
 
 import os
-import time  # Import the time module
+import time  
 from fastapi import APIRouter, HTTPException, Request
 
 # Import our two core services
-from app.services.translation_service import translate_text
-from app.services.tts_service import generate_speech
+from app.services.translation_service import translate_text #importing the logic
+from app.services.tts_service import generate_speech #importing the logic
 
-# Import our Pydantic models
+# Import our Pydantic models from models
 from app.api.models.translator_models import TranslationRequest, FullTranslationResponse
 
-router = APIRouter()
+router = APIRouter() # way to group related endpoints
 
-# Note: The code provided includes a duplicate router. We will only use one.
-@router.post("/translate", response_model=FullTranslationResponse, tags=["Translation"])
-async def handle_full_translation_flow(req_body: TranslationRequest, request: Request):
+
+# let's go inside the /translate:
+@router.post("/translate", response_model=FullTranslationResponse, tags=["Translation"]) # response will follow FullTranslationResponse structure defined in model
+async def handle_full_translation_flow(req_body: TranslationRequest, request: Request): # the coming request will follow TranslationRequest structure defined in model
     """
     Translates text, generates speech, and returns a JSON response containing
     the translated text, a public URL to the audio file, and performance metrics.
@@ -33,6 +34,8 @@ async def handle_full_translation_flow(req_body: TranslationRequest, request: Re
 
     if "Error:" in translated_text:
         raise HTTPException(status_code=500, detail=f"Translation Error: {translated_text}")
+
+
 
     # Step 2: Generate Speech
     audio_file_path = generate_speech(text=translated_text, voice=req_body.voice)

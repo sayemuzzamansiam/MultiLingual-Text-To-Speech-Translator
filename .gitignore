@@ -1,3 +1,6 @@
+myenv/
+.env
+
 __pycache__/
 *.pyc
 *.pyo
@@ -21,3 +24,5 @@ dist/
 # Ignore any log files that might be generated.
 *.log
 *.log.*
+*.log.*
+

@@ -27,7 +27,7 @@ def _save_wav_file(filename, pcm_data, channels=1, rate=24000, sample_width=2):
         print(f"--- Error saving WAV file: {e}")
 
 
-# This is your core TTS function
+# This is core TTS function
 def generate_speech(text: str, voice: str = "Kore") -> str:
     """
     Convert text into speech using Gemini TTS and return the audio file path.
