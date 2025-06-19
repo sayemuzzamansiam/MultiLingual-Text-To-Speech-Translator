@@ -34,7 +34,7 @@ def generate_speech(text: str, voice: str = "Kore") -> str:
     """
     print(f"--- Generating speech for text: '{text[:30]}...' with voice: {voice}")
     try:
-        client = genai.Client(api_key=settings.GOOGLE_AI_API_KEY)
+        client = genai.Client(api_key=settings.GOOGLE_API_KEY)
 
         response = client.models.generate_content(
             model="models/gemini-2.5-flash-preview-tts",

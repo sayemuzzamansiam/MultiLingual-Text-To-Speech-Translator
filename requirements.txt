@@ -1,7 +1,17 @@
-#translator/requirements.txt
 fastapi
 uvicorn[standard]
 pydantic-settings
 python-dotenv
 openai
 google-genai
+
+# New dependencies for pronunciation scoring
+groq
+librosa
+fastdtw
+thefuzz[speedup]
+python-multipart
+
+# New dependencies for the client script
+requests
+pyaudio
